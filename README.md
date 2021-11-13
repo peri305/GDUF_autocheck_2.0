@@ -1,4 +1,4 @@
-<h1 align="center" href="https://feizao67.github.io/">
+<h1 align="center">
 
 GDUF_autocheck_2.0
 
