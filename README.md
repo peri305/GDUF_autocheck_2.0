@@ -1,4 +1,4 @@
-<h1 align="center">
+<h1 align="center" href="https://feizao67.github.io/">
 
 GDUF_autocheck_2.0
 
@@ -29,10 +29,12 @@ GDUF_autocheck_2.0
 ![image](https://github.com/feizao67/GDUF_autocheck/blob/main/如何获取BARK.jpg)
 
 ## 安装必要模块
-- 运行如下代码```pip -r requirements.txt```
+- 运行如下代码<br>
+```pip -r requirements.txt```
 
 ## 启动
-- 运行如下代码```python ./main.py```
+- 运行如下代码<br>
+```python ./main.py```
 
 ## 与我联系
 - 有任何问题可以提交[issues](https://github.com/feizao67/GDUF_autocheck_2.0/issues/new)  
