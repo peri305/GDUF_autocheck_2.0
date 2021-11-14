@@ -30,7 +30,7 @@ GDUF_autocheck_2.0
 
 ## 安装必要模块
 - 运行如下代码<br>
-```pip -r requirements.txt```
+```pip install -r requirements.txt```
 
 ## 启动
 - 运行如下代码<br>
