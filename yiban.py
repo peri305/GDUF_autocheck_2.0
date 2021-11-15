@@ -7,7 +7,7 @@ from Crypto.PublicKey import RSA
 
 class YiBan:
     HEADERS = {
-        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 yiban_iOS/4.9.10",
+        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 15_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 yiban_iOS/5.0.5",
     }
 
     def __init__(self, account, passwd, address):
@@ -34,6 +34,7 @@ class YiBan:
             return None
 
     def encryptPassword(self, pwd):
+        # 密码加密
         PUBLIC_KEY = '''-----BEGIN PUBLIC KEY-----
             MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA6aTDM8BhCS8O0wlx2KzA
             Ajffez4G4A/QSnn1ZDuvLRbKBHm0vVBtBhD03QUnnHXvqigsOOwr4onUeNljegIC
@@ -79,6 +80,7 @@ class YiBan:
             url=url, method="post", params=param, headers=header)
         if response['response'] == 100:
             self.access_token = response['data']['access_token']
+            # print(self.access_token)
             return response
         else:
             raise Exception("账号或密码错误")
@@ -95,14 +97,31 @@ class YiBan:
                 self.url = i["url"]
         return r
 
+    def oauth(self):
+        headers = {
+            "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 15_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 yiban_iOS/5.0.5",
+            "Cookie": "loginToken={}; yibanM_user_token={}".format(self.access_token, self.access_token),
+            "loginToken": self.access_token
+        }
+
+        data = {
+            "client_id": "0b77c3ac53bd5c65",
+            "redirect_uri": self.url,
+        }
+
+        oauth = self.request(
+            url="https://oauth.yiban.cn/code/usersure", method="post", params=data, headers=headers)
+
+        return oauth["reUrl"]
+
     def submit(self):
-        header_loginToken = {"loginToken": "{0}".format(self.access_token)}
+        self.HEADERS["loginToken"] = self.access_token
 
         auth_1 = self.session.get(
-            url="{0}/v/{1}".format(self.url, self.access_token), headers=header_loginToken, allow_redirects=False)
+            url=self.oauth(), headers=self.HEADERS, allow_redirects=False)
 
         auth_2 = self.session.get(
-            url=auth_1.headers["Location"], headers=header_loginToken, allow_redirects=False)
+            url=auth_1.headers["Location"], headers=self.HEADERS, allow_redirects=False)
 
         home = self.session.get(
             url=auth_2.headers["Location"], headers=self.HEADERS, allow_redirects=False)
