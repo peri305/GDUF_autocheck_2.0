@@ -39,6 +39,7 @@ GDUF_autocheck_2.0
 ## 与我联系
 - 有任何问题可以提交[issues](https://github.com/feizao67/GDUF_autocheck_2.0/issues/new)  
 - QQ交流群：[550758147](https://qm.qq.com/cgi-bin/qm/qr?k=NM9kxBkkvWsNiKx-4y0IzzzpaaXbjGOx&jump_from=webapi)
+- [电报群](https://t.me/gdspyp)
 
 
 ## 许可
