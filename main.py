@@ -16,7 +16,7 @@ def check(account, password, bark, address):
             yb.login()
             yb.getHome()
             if yb.submit() == True:
-                print(util.get_time(), yb.result_str)
+                print(util.get_time(), "[第%s次执行] %s" % (t, yb.result_str))
                 push(bark, yb.result_str)
                 t = 5
             else:
