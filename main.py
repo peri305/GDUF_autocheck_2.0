@@ -9,19 +9,24 @@ def push(bark, err):
 
 
 def check(account, password, bark, address):
-    try:
-        yb = YiBan(account, password, address)
-        yb.login()
-        yb.getHome()
-        if yb.submit() == True:
-            print(util.get_time(), yb.result_str)
-            push(bark, yb.result_str)
-        else:
-            print(util.get_time(), "%s 打卡成功" % yb.name)
-    except Exception as errors:
-        err = "%s %s" % (yb.account, errors)
-        print(util.get_time(), err)
-        push(bark, err)
+    t = 1
+    while t <= 3:
+        try:
+            yb = YiBan(account, password, address)
+            yb.login()
+            yb.getHome()
+            if yb.submit() == True:
+                print(util.get_time(), yb.result_str)
+                push(bark, yb.result_str)
+                t = 5
+            else:
+                print(util.get_time(), "[第%s次执行] %s 打卡成功" % (t, yb.name))
+                t = 5
+        except Exception as errors:
+            err = "[第%s次执行] %s %s" % (t, yb.account, errors)
+            print(util.get_time(), err)
+            push(bark, err)
+            t += 1
 
 
 def main():
@@ -37,11 +42,11 @@ def main():
         else:
             if util.get_data(i, 4) is not None:
                 check(util.get_data(i, 1), util.get_data(i, 2),
-                      "这里替换你的BARK", util.get_data(i, 4))
+                      "这里替换主（帮别人打卡的管理员的）BARK", util.get_data(i, 4))
             else:
                 check(util.get_data(i, 1), util.get_data(i, 2),
-                      "这里替换你的BARK", "广东省广州市天河区迎福路靠近广东金融学院")
-        i = i+1
+                      "这里替换主（帮别人打卡的管理员的）BARK", "广东省广州市天河区迎福路靠近广东金融学院")
+        i += 1
 
 
 if __name__ == '__main__':
