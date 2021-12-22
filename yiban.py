@@ -161,9 +161,7 @@ def check(account, password, bark, address):
                 t = 5
         except Exception as errors:
             if t <= 2:
-                err = "[第%s次执行] %s %s" % (t, yb.account, errors)
-                print(get_time(), err)
-                push(bark, err)
+                print(get_time(), "[第%s次执行] %s %s" % (t, yb.account, errors))
                 t += 1
             else:
                 err = "[第%s次执行] %s %s" % (t, yb.account, errors)
