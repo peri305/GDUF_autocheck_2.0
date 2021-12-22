@@ -79,7 +79,6 @@ class YiBan:
         for i in r["data"]["hotApps"]:
             if i["name"] == "易广金":
                 self.url = i["url"]
-        return r
 
     def oauth(self):
         headers = {
@@ -157,8 +156,8 @@ def check(account, password, bark, address):
                 print(get_time(), "[第%s次执行] %s 打卡成功" % (t, yb.name))
                 t = 5
             else:
-                print(get_time(), "{0} 打卡失败，失败原因：{1}".format(yb.name, submit))
-                push(bark, "{0} 打卡失败，失败原因：{1}".format(yb.name, submit))
+                print(get_time(), "%s 打卡失败，失败原因：%s" % (yb.name, submit))
+                push(bark, "%s 打卡失败，失败原因：%s" % (yb.name, submit))
                 t = 5
         except Exception as errors:
             if t <= 2:
