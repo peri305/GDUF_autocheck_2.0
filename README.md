@@ -21,7 +21,7 @@ GDUF_autocheck_2.0
 
 - 备注：<br>
 ①地址项可留空，留空则默认校本部,可用作放假回家自定义地址<br>
-②BARK推送生效的前提是在```main.py```中填入你的主BARK<br>
+②BARK推送生效的前提是在```yiban.py```中填入你的主BARK<br>
 ③在```data.xlsx```中留空的BARK当打卡失败时会向主BARK用户发送提醒<br>
 ④BARK的Value填入的是在你的Bark客户端里得到```https://api.day.app/XXXXXXXXXXXXXXXXXXXXXX```后面的那串字符<br>
 ⑤添加BARK这一步为可选步骤（非必要），不添加不会影响打卡，只是当打卡失败时不会向手机推送失败提醒<br>
@@ -34,7 +34,7 @@ GDUF_autocheck_2.0
 
 ## 启动
 - 运行如下代码<br>
-```python ./main.py```
+```python ./yiban.py```
 
 ## 与我联系
 - 有任何问题可以提交[issues](https://github.com/feizao67/GDUF_autocheck_2.0/issues/new)  
